@@ -4,7 +4,7 @@ open System.Collections.Generic
 
 // Heap property: at every node x, key.[x] <= all keys of x's children
 
-// Array-based implementation (zero-based starting from 0):
+// Array-based implementation (zero-based index):
 // parent(i) = i/2-1 if i is even
 //           = (i-1)/2 if i is odd
 
@@ -35,6 +35,11 @@ type Heap<'T when 'T: comparison>(capacity: int) =
                 arr.[childi] <- temp
                 bubleDown childi
 
+    /// Whether the heap is empty
+    member x.IsEmpty() = arr.Count = 0
+
+    member x.Clear() = arr.Clear()
+
     /// Insert a new key into heap, T = O(logn)
     member x.Insert k =
         arr.Add k // put into the end
@@ -45,8 +50,9 @@ type Heap<'T when 'T: comparison>(capacity: int) =
         let root = arr.[0]
         let last = arr.[arr.Count-1]
         arr.RemoveAt(arr.Count-1)
-        arr.[0] <- last // Move last leaf to be new root
-        bubleDown 0
+        if not <| x.IsEmpty() then
+            arr.[0] <- last // Move last leaf to be new root
+            bubleDown 0
         root
 
     /// Get the min key without removal
@@ -60,5 +66,4 @@ type Heap<'T when 'T: comparison>(capacity: int) =
         for el in arr do
             sprintf "%O, " el |> sb.Append |> ignore
         sb.ToString()
-            
 
