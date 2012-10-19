@@ -38,6 +38,7 @@
     <Compile Include="CountComp.fs" />
     <Compile Include="Tests.fs" />
     <None Include="Script.fsx" />
+    <Content Include="Problem.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FsUnit.CustomMatchers">

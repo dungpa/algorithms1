@@ -38,6 +38,7 @@
     <Compile Include="Graph.fs" />
     <None Include="Script.fsx" />
     <Compile Include="Tests.fs" />
+    <Content Include="Problem.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FsUnit.CustomMatchers">

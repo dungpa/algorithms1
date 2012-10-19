@@ -41,6 +41,7 @@
     <Compile Include="Median.fs" />
     <None Include="MedianScript.fsx" />
     <Compile Include="Tests.fs" />
+    <Content Include="Problem.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FsUnit.CustomMatchers">
