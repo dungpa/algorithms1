@@ -23,3 +23,6 @@ let c = __SOURCE_DIRECTORY__ + "\\QuickSort.txt"
          |> Array.ofSeq
          |> CountComp.count CountComp.pivotOnMedian;;
 
+
+[|4; 3; 2; 1|] |> CountComp.count CountComp.pivotOnLast;;
+

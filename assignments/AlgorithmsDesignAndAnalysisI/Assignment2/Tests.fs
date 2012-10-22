@@ -29,4 +29,21 @@ let countPivotOnMedian2() =
     CountComp.count CountComp.pivotOnMedian [|999;3;2;98;765;8;14;15;16;88;145;100|] |> should equal 29
     CountComp.count CountComp.pivotOnMedian [|1;11;5;15;2;999;3;2;98;765;8;14;15;16;88;145;100;12;9;99;77;0|] |> should equal 82
 
+open FsCheck
 
+[<Property>]
+let ``Increased integer arrays have maximum number of comparison`` (xs: int []) =
+    let xs' = Array.sort xs
+    let n = Array.length xs'
+    CountComp.count CountComp.pivotOnFirst xs' = n*(n-1)/2
+
+let strictlyDecreased = function 
+    | [||] -> false
+    | [|_|] -> true
+    | xs -> Seq.forall (fun i -> xs.[i] > xs.[i+1]) {0..Array.length xs - 2}
+
+[<Property>]
+let ``Strictly Decreased integer arrays have maximum number of comparison`` (xs: int []) =
+    let xs' = Array.sortBy (~-) xs
+    let n = Array.length xs'
+    strictlyDecreased xs' ==> (CountComp.count CountComp.pivotOnLast xs' = n*(n-1)/2)
